@@ -7,7 +7,7 @@ Representa um filme cadastrado na locadora
  */
 
 
-public class Filme {
+    public class Filme {
     private int codigo;                   /* Esses são os atributos do Code, criando uma classe privada */
     private String nome;
     private String genero;
