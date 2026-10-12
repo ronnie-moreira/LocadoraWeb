@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Filme</title>
+    <!-- Correção: th:href no lugar de th:ref -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="cabecalho">
+    <p class="professor">Prof. Shabaray</p>
+    <h1>Locadora Ronnie</h1>
+    <p>Cadastro de Filme</p>
+</header> <!-- Fechamento correto do header -->
+
+<main class="conteudo">
+    <section class="painel-formulario">
+        <h2>Cadastro Filme</h2>
+
+        <p class="mensagem-erro"
+           th:if="${mensagemErro}"
+           th:text="${mensagemErro}">
+        </p> <!-- Fechamento correto da tag <p> -->
+
+        <form th:action="@{/filmes/salvar}" th:object="${filme}" method="post">
+            <div class="campo">
+                <label for="nome">Nome</label>
+                <!-- Correção: th:field usa asterisco e ponto, ex: th:field="*{nome}" -->
+                <input id="nome" type="text" th:field="*{nome}" required>
+            </div>
+
+            <div class="acoes">
+                <!-- O botão já está configurado corretamente como submit -->
+                <button class="botao-principal" type="submit">Salvar filme</button>
+                <!-- Link estilizado como botão para voltar -->
+                <a class="botao-secundario" th:href="@{/}">Voltar</a>
+            </div>
+
+        </form>
+    </section>
+</main>
+</body>
+</html>
