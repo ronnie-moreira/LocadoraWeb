@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes cadastrados</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="cabecalho">
+    <p class="professor">Professor Fernando Sá</p>
+    <h1>Locadora do Ronnie</h1>
+    <p>Filmes cadastrados</p>
+</header>
+
+<main class="conteudo">
+    <section class="painel-listagem">
+        <div class="cabecalho-pagina">
+            <h2>Lista de Filmes</h2>
+            <a class="botao-principal" th:href="@{/filmes/novo}">Cadastrar novo filme</a>
+        </div>
+
+        <!-- Mensagem de sucesso ao cadastrar -->
+        <p class="mensagem-sucesso" th:if="${param.sucesso}">
+            Filme cadastrado com sucesso
+        </p>
+
+        <!-- Mensagem caso a lista esteja vazia -->
+        <p class="lista-vazia" th:if="${filmes.isEmpty()}">
+            Nenhum filme cadastrado
+        </p>
+
+        <!-- Tabela exibida apenas quando houver filmes -->
+        <div class="tabela-container" th:unless="${filmes.isEmpty()}">
+            <table>
+                <thead>
+                <tr>
+                    <th>1</th>
+                    <th>Matrix</th>
+                    <th>Ficção</th>
+                    <th>Disponivel</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="filme : ${filmes}">
+                    <td th:text="${filme.codigo}">1</td>
+                    <td th:text="${filme.nome}">Matrix</td>
+                    <td th:text="${filme.genero}">Ficção</td>
+                    <td>
+                        <span th:if="${filme.alugado}" class="status-alugado">Alugado</span>
+                        <span th:unless="${filme.alugado}" class="status-disponivel">Disponível</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="acoes">
+            <a class="botao-secundario" th:href="@{/filmes}">Voltar ao Menu</a>
+        </div>
+    </section>
+</main>
+
+<footer class="rodape">
+    <p>Projeto de Programação Orientada a Objeto I</p>
+</footer>
+</body>
+</html>

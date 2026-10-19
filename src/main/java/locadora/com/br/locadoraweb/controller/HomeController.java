@@ -13,7 +13,6 @@ public class HomeController { //Declara o controller da pagina inicial
        return "index";
 
    }
-
 }
 
 /*

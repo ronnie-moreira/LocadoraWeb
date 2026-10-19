@@ -38,8 +38,8 @@ public class FilmeController {
     }
     @GetMapping
     public String listarFilmes(Model model){
-        model.addAttribute("Filmes", service.ListarFilmes());
-        return "Filmes/listar";
+        model.addAttribute("filmes", service.ListarFilmes());
+        return "filmes/listar";
 
     }
 }
