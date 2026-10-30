@@ -33,7 +33,7 @@ import java.util.List;
     }
 
     public Filme buscarFilmePorCodigo(int codigo) {
-        for (Filme filme : filmes) {  //cada reptição ele apresenta um filme pra mim e se ele não encontrar ele retorna NULL;
+        for (Filme filme : filmes) {  //Para cada reptição ele apresenta um filme pra mim e se ele não encontrar ele retorna NULL;
             if (filme.getCodigo() == codigo) {
                 return filme;
             }
