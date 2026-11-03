@@ -1,330 +1,496 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GLOBAIS E RESET
+   ========================================================================== */
+
+/* Reseta margens, preenchimentos e define o box-sizing para cálculo correto de tamanhos */
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
 }
 
+/* Configurações padrão do corpo da página (Fundo escuro e fonte limpa) */
 body{
     min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #0F172A;
-    color: #F1F5F9;
-
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif; /* Fonte moderna e limpa */
+    background-color: #0F172A; /* Azul escuro profundo (Slate 900) */
+    color: #F1F5F9; /* Texto claro padrão (Slate 100) */
 }
 
+
+/* ==========================================================================
+   2. CABEÇALHO E ESTRUTURA PRINCIPAL
+   ========================================================================== */
+
+/* Estilização do cabeçalho do site */
 .cabecalho {
-    background-color: #0B0F19;
+    background-color: #0B0F19; /* Tom mais escuro para destaque */
     color: #94A3B8;
-    padding: 24px;
+    padding: 28px 24px;
     text-align: center;
-    box-shadow: 0.2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Sombra suave para profundidade */
+    border-bottom: 1px solid #1E293B; /* Linha sutil de separação */
 }
 
+/* Destaque para o nome da disciplina/professor no topo */
 .professor {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-    color: #38BDF8;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+    color: #38BDF8; /* Azul claro vibrante */
+    margin-bottom: 8px;
+    letter-spacing: 1.5px; /* Espaçamento elegante entre letras */
     text-transform: uppercase;
     text-align: center;
 }
 
+/* Título principal do cabeçalho */
 .cabecalho h1 {
-    margin-bottom: 10px;
-    font-size: 38px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 36px;
+    font-weight: 800; /* CORRIGIDO: Removido o 'px' indevido */
     text-align: center;
     color: #FFFFFF;
-
 }
 
+/* Parágrafo descritivo do cabeçalho */
 .cabecalho p {
     color: #94A3B8;
     text-align: center;
-
+    font-size: 15px;
 }
+
+/* Container central de conteúdo da página */
 .Conteudo {
     width: 90%;
     max-width: 1000px;
     margin: 40px auto;
 }
+
+/* Título secundário dos menus ou seções */
 .titulo-menu{
     margin-bottom: 24px;
     text-align: center;
     color: #F1F5F9;
+    font-size: 1.5rem;
 }
 
-.botao-menu:active {
-    transform: scale(0.95);
-    transition: 0.1s;
-}
+
+/* ==========================================================================
+   3. MENU PRINCIPAL E BOTÕES DE NAVEGAÇÃO
+   ========================================================================== */
+
+/* Grade (Grid) do menu para distribuir os botões em colunas responsivas */
 .menu {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas iguais */
+    gap: 20px; /* Espaçamento entre os cards do menu */
 }
 
+/* Estilo base dos botões do menu */
 .botao-menu{
     display: block;
     padding: 24px;
-    border-radius: 10px;
-    background-color: #1E293B;
-    border: 2px solid #334155;
+    border-radius: 12px;
+    background-color: #1E293B; /* Tom de cartão escuro (Slate 800) */
+    border: 2px solid #334155; /* Borda sutil */
     color: #F1F5F9;
     text-decoration: none;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-    transition: 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease; /* Transição suave para todas as propriedades */
 }
+
+/* Efeito ao passar o mouse por cima dos botões do menu */
 .botao-menu:hover {
-    background-color: #2563EB;
+    background-color: #2563EB; /* Azul vibrante */
     border-color: #3B82F6;
     color: #FFFFFF;
-    transform: scale(1.05);
-    /* O brilho azul entra aqui: */
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.4);
-    transition: 0.3s;
-}
-.rodape {
-    margin-top: 145px;
-    padding: 20px;
-    background-color: #0B0F19;
-    color: #64748B;
-    text-align: center;
-}
-@media (max-width: 700px) {
-    .menu{
-    grid-template-columns: 1fr;
-}
-    .cabecalho h1{
-        font-size: 30px;
-    }
+    transform: translateY(-4px); /* Efeito sutil de flutuação para cima */
+    /* Brilho azul moderno (*Glow Effect*) */
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(59, 130, 246, 0.2);
 }
 
-/* =========================================
-   ESTILOS EXCLUSIVOS PARA O FORMULÁRIO DE FILMES
-   (Não afetam o resto do site)
-   ========================================= */
+/* Efeito ao clicar no botão do menu (sensação de afundar) */
+.botao-menu:active {
+    transform: scale(0.97);
+}
 
-/* Centraliza o painel do formulário na tela de cadastro */
+
+/* ==========================================================================
+   4. FORMULÁRIO DE CADASTRO (PADRONIZADO EM DARK MODE)
+   ========================================================================== */
+
+/* Painel principal do formulário (Integrado ao visual escuro do site) */
 .painel-formulario {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    max-width: 450px;
-    margin: 20px auto;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1E293B; /* Fundo escuro igual aos cards */
+    padding: 35px;
+    border-radius: 14px;
+    border: 2px solid #334155; /* Borda combinando com o tema */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    max-width: 500px;
+    margin: 30px auto;
 }
 
+/* Título interno do formulário */
 .painel-formulario h2 {
-    font-size: 1.5rem;
-    color: #1a1a2e;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #e9ecef;
-    padding-bottom: 10px;
+    font-size: 1.4rem;
+    color: #F1F5F9;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #334155;
+    padding-bottom: 12px;
 }
 
-/* Campos de entrada específicos do formulário */
+/* Container individual para cada campo de input e label */
 .painel-formulario .campo {
     display: flex;
     flex-direction: column;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
+/* Rótulo (Label) do campo do formulário */
 .painel-formulario .campo label {
     font-size: 0.9rem;
     font-weight: 600;
-    margin-bottom: 6px;
-    color: #495057;
+    margin-bottom: 8px;
+    color: #94A3B8;
 }
 
+/* Caixas de texto (Inputs) do formulário */
 .painel-formulario .campo input {
-    padding: 12px 14px;
-    border: 1px solid #ced4da;
-    border-radius: 6px;
+    padding: 14px 16px;
+    background-color: #0F172A; /* Fundo interno escuro */
+    border: 1px solid #334155;
+    border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    color: #F1F5F9; /* Texto digitado em branco */
+    transition: all 0.2s ease;
     outline: none;
     width: 100%;
 }
 
+/* Efeito quando o usuário clica/foca no input */
 .painel-formulario .campo input:focus {
-    border-color: #4a90e2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    border-color: #38BDF8; /* Borda azul claro */
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2); /* Sombra de foco difusa */
 }
 
-/* Alertas de Erro e Sucesso dentro do formulário */
+/* Alerta de Erro estilizado em Dark Mode */
 .painel-formulario .mensagem-erro {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px 14px;
-    border-radius: 6px;
+    background-color: rgba(239, 68, 68, 0.15); /* Fundo vermelho translúcido */
+    color: #F87171; /* Texto vermelho claro */
+    padding: 12px 16px;
+    border-radius: 8px;
     font-size: 0.9rem;
-    margin-bottom: 15px;
-    border: 1px solid #f5c6cb;
+    margin-bottom: 18px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
+/* Alerta de Sucesso estilizado em Dark Mode */
 .painel-formulario .mensagem-sucesso {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 10px 14px;
-    border-radius: 6px;
+    background-color: rgba(34, 197, 94, 0.15); /* Fundo verde translúcido */
+    color: #4ADE80; /* Texto verde claro */
+    padding: 12px 16px;
+    border-radius: 8px;
     font-size: 0.9rem;
-    margin-bottom: 15px;
-    border: 1px solid #c3e6cb;
+    margin-bottom: 18px;
+    border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
-/* Área de botões do formulário */
+/* Área que abriga os botões do formulário lado a lado */
 .painel-formulario .acoes {
     display: flex;
-    gap: 12px;
-    margin-top: 25px;
+    gap: 14px;
+    margin-top: 30px;
 }
 
+/* Estilo unificado para os botões dentro do painel */
 .painel-formulario .botao-principal,
 .painel-formulario .botao-secundario {
     flex: 1;
     padding: 12px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.2s, transform 0.1s;
+    transition: all 0.2s ease;
 }
 
-/* Botão Salvar (Verde) */
+/* Botão de Ação Principal (Salvar - Azul moderno) */
 .painel-formulario .botao-principal {
-    background-color: #28a745;
+    background-color: #2563EB;
     color: white;
 }
 
 .painel-formulario .botao-principal:hover {
-    background-color: #218838;
+    background-color: #1D4ED8;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
 }
 
-/* Botão Voltar (Cinza) */
+/* Botão Secundário (Voltar / Cancelar - Cinza elegante) */
 .painel-formulario .botao-secundario {
-    background-color: #6c757d;
-    color: white;
+    background-color: #334155;
+    color: #F1F5F9;
     display: inline-block;
 }
 
 .painel-formulario .botao-secundario:hover {
-    background-color: #5a6268;
+    background-color: #475569;
 }
 
+/* Efeito de clique nos botões do formulário */
 .painel-formulario .botao-principal:active,
 .painel-formulario .botao-secundario:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
 }
 
-/* Estilos para a listagem e tabela */
+
+/* ==========================================================================
+   5. PAINEL DE LISTAGEM E TABELAS DE DADOS
+   ========================================================================== */
+
+/* Container da listagem geral */
 .painel-listagem {
     background-color: #1E293B;
     padding: 30px;
-    border-radius: 12px;
+    border-radius: 14px;
     border: 2px solid #334155;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
+/* Cabeçalho interno da página de listagem (Título + Botão novo cadastro) */
 .cabecalho-pagina {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .cabecalho-pagina h2 {
     color: #F1F5F9;
+    font-size: 1.4rem;
 }
 
+/* Permite rolagem horizontal caso a tabela seja muito larga para telas pequenas */
 .tabela-container {
     overflow-x: auto;
 }
 
+/* Estrutura da Tabela */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* Remove espaços duplos entre as bordas das células */
     margin-top: 10px;
     text-align: left;
 }
 
+/* Células de cabeçalho e dados da tabela */
 table th, table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid #334155;
+    padding: 14px 18px;
+    border-bottom: 1px solid #334155; /* Linha divisória sutil */
     color: #F1F5F9;
 }
 
+/* Cabeçalho da tabela */
 table th {
     background-color: #0B0F19;
     color: #38BDF8;
     font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
 }
 
+/* Efeito ao passar o mouse sobre as linhas da tabela */
 table tr:hover {
-    background-color: #273548;
+    background-color: #273548; /* Tom intermediário para destaque da linha */
 }
 
-/* Badges de Status */
+
+/* ==========================================================================
+   6. BADGES DE STATUS (ALUGADO / DISPONÍVEL)
+   ========================================================================== */
+
+/* Badge de status para filme alugado (Vermelho suave) */
 .status-alugado {
-    background-color: rgba(239, 68, 68, 0.2);
+    background-color: rgba(239, 68, 68, 0.15);
     color: #F87171;
     padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 14px;
+    border-radius: 20px; /* Formato de pílula arredondada */
+    font-size: 13px;
     font-weight: bold;
+    display: inline-block;
 }
 
+/* Badge de status para filme disponível (Verde suave) */
 .status-disponivel {
-    background-color: rgba(34, 197, 94, 0.2);
+    background-color: rgba(34, 197, 94, 0.15);
     color: #4ADE80;
     padding: 6px 12px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
+    display: inline-block;
 }
 
-/* Botões customizados para a página de listagem */
+
+/* ==========================================================================
+   7. BOTÕES ESPECÍFICOS DA LISTAGEM
+   ========================================================================== */
+
 .painel-listagem .botao-principal {
     background-color: #2563EB;
     color: white;
     padding: 10px 18px;
-    border-radius: 6px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.2s;
+    transition: all 0.2s ease;
+    display: inline-block;
 }
 
 .painel-listagem .botao-principal:hover {
     background-color: #1D4ED8;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .painel-listagem .botao-secundario {
-    background-color: #475569;
+    background-color: #334155;
     color: white;
     padding: 10px 18px;
-    border-radius: 6px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    transition: 0.2s;
+    transition: all 0.2s ease;
 }
 
 .painel-listagem .botao-secundario:hover {
-    background-color: #334155;
+    background-color: #475569;
 }
 
+/* Mensagem exibida quando não há dados cadastrados */
 .lista-vazia {
     color: #94A3B8;
     text-align: center;
-    padding: 20px;
+    padding: 30px;
     font-style: italic;
+}
+
+
+/* ==========================================================================
+   8. BOTÕES DE AÇÃO NA TABELA (EDITAR / EXCLUIR)
+   ========================================================================== */
+
+/* Alinha os botões lado a lado dentro da célula da tabela */
+.acoes-tabela {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Estilo base para os botões de ação da tabela */
+.btn-acao {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Botão Editar (Tom azul/ciano sutil) */
+.btn-editar {
+    background-color: rgba(56, 189, 248, 0.15);
+    color: #38BDF8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.btn-editar:hover {
+    background-color: #38BDF8;
+    color: #0F172A;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+/* Botão Excluir (Tom vermelho suave de alerta) */
+.btn-excluir {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #F87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-excluir:hover {
+    background-color: #EF4444;
+    color: #FFFFFF;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+}
+
+/* Efeito de clique (afundar) */
+.btn-acao:active {
+    transform: scale(0.95);
+}
+
+
+/* ==========================================================================
+   9. RODAPÉ E RESPONSIVIDADE (MOBILE)
+   ========================================================================== */
+
+/* Rodapé do sistema */
+.rodape {
+    margin-top: 100px;
+    padding: 24px;
+    background-color: #0B0F19;
+    color: #64748B;
+    text-align: center;
+    border-top: 1px solid #1E293B;
+    font-size: 14px;
+}
+
+/* Media Query para telas menores que 700px (Celulares e Tablets) */
+@media (max-width: 700px) {
+    .menu {
+        grid-template-columns: 1fr; /* Transforma o menu de 2 colunas em 1 única coluna empilhada */
+    }
+
+    .cabecalho h1 {
+        font-size: 28px; /* Reduz o tamanho do título principal em telas pequenas */
+    }
+
+    .painel-formulario {
+        padding: 20px;
+        margin: 15px;
+    }
+
+    .cabecalho-pagina {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}
+
+/* Atualize ou adicione esta regra no seu style.css para o select acompanhar o input */
+.painel-formulario .campo input,
+.painel-formulario .campo select {
+    padding: 14px 16px;
+    background-color: #0F172A;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #F1F5F9;
+    transition: all 0.2s ease;
+    outline: none;
+    width: 100%;
+}
+
+.painel-formulario .campo input:focus,
+.painel-formulario .campo select:focus {
+    border-color: #38BDF8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
 }

@@ -6,46 +6,41 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-    @Service //Faz Spring Boot criar e gerenciar um único objeto
-
-
-    public class LocadoraService {
-
+@Service
+public class LocadoraService {
 
     private final List<Filme> filmes;
-    private int proximoCodigoFilme;
+    private int proximoCodigoFilme; // Usando int primitivo
 
     public LocadoraService() {
-
-        filmes = new ArrayList<>();  //
+        filmes = new ArrayList<>();
         proximoCodigoFilme = 1;
     }
 
     public void cadastrarFilme(Filme filme) {
-
         filme.setCodigo(proximoCodigoFilme);
         proximoCodigoFilme++;
         filmes.add(filme);
     }
 
-    public List<Filme> ListarFilmes() {
+    public List<Filme> listarFilmes() {
         return new ArrayList<>(filmes);
     }
 
-    public Filme buscarFilmePorCodigo(int codigo) {
-        for (Filme filme : filmes) {  //Para cada reptição ele apresenta um filme pra mim e se ele não encontrar ele retorna NULL;
-            if (filme.getCodigo() == codigo) {
+    public Filme buscarFilmePorCodigo(int codigo) { // Recebe int
+        for (Filme filme : filmes) {
+            if (filme.getCodigo() == codigo) { // Usando '==' para comparar int primitivo
                 return filme;
             }
         }
         return null;
     }
 
+    public void excluirFilme(int codigo) { // Recebe int
+        filmes.removeIf(filme -> filme.getCodigo() == codigo); // Usando '=='
+    }
+
+    public Filme buscarPorId(int codigo) { // Recebe int
+        return buscarFilmePorCodigo(codigo);
+    }
 }
-
-
-
-
-
-
-

@@ -38,8 +38,23 @@ public class FilmeController {
     }
     @GetMapping
     public String listarFilmes(Model model){
-        model.addAttribute("filmes", service.ListarFilmes());
+        model.addAttribute("filmes", service.listarFilmes());
         return "filmes/listar";
 
+    }
+
+    // 1. Método para Excluir o Filme
+    @GetMapping("/excluir/{id}") // ou /{codigo} dependendo de qual atributo você usa como identificador na classe Filme
+    public String excluirFilme(@org.springframework.web.bind.annotation.PathVariable int id) {
+        service.excluirFilme(id); // (Certifique-se de que o método de exclusão no seu Service se chama assim, ou ajuste para o nome correto)
+        return "redirect:/filmes";
+    }
+
+    // 2. Método para Abrir o Formulário de Edição (Carregando os dados do filme)
+    @GetMapping("/editar/{id}")
+    public String editarFilme(@org.springframework.web.bind.annotation.PathVariable int id, Model model) {
+        Filme filme = service.buscarPorId(id); // (Ajuste para o método do seu Service que busca por ID/código)
+        model.addAttribute("filme", filme);
+        return "Filmes/Formulario"; // Reaproveita o mesmo formulário de cadastro
     }
 }

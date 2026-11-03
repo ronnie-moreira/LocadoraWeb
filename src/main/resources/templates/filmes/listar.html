@@ -36,10 +36,11 @@
             <table>
                 <thead>
                 <tr>
-                    <th>1</th>
-                    <th>Matrix</th>
-                    <th>Ficção</th>
-                    <th>Disponivel</th>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Gênero</th>
+                    <th>Status</th>
+                    <th>Ações</th> <!-- 1. Nova coluna de cabeçalho -->
                 </tr>
                 </thead>
                 <tbody>
@@ -51,13 +52,18 @@
                         <span th:if="${filme.alugado}" class="status-alugado">Alugado</span>
                         <span th:unless="${filme.alugado}" class="status-disponivel">Disponível</span>
                     </td>
+                    <!-- 2. Coluna com os botões estilizados de Editar e Excluir -->
+                    <td class="acoes-tabela">
+                        <a th:href="@{/filmes/editar/{codigo}(codigo=${filme.codigo})}" class="btn-acao btn-editar">Editar</a>
+                        <a th:href="@{/filmes/excluir/{codigo}(codigo=${filme.codigo})}" class="btn-acao btn-excluir" onclick="return confirm('Deseja realmente excluir este filme?');">Excluir</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="acoes">
-            <a class="botao-secundario" th:href="@{/filmes}">Voltar ao Menu</a>
+            <a class="botao-secundario" th:href="@{/}">Voltar ao Menu</a>
         </div>
     </section>
 </main>

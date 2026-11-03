@@ -1,40 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale0 = 1.0">    <!--Ajusta tela no celular-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <!-- Ajusta tela no celular -->
 
     <title>LOCADORA RONNIE</title>
-    <link rel="stylesheet" href="/css/style.css"> <!--carrega tela css tela BONITA-->
+    <link rel="stylesheet" th:href="@{/css/style.css}"> <!-- Carrega folha de estilo -->
 
 </head>
 
 <body>
-    <header class="cabecalho">
+<header class="cabecalho">
     <p class="professor">Prof. Fernando Sá - Shaba </p>
     <h1>LOCADORA RONNIE</h1>
     <p> Sistema didático de gerenciamento de filmes </p>
-
 </header>
 
 <main class="Conteudo">
     <h2 class="titulo-menu"> Menu principal </h2>
 
     <section class="menu">
-        <a class="botao-menu" href="/filmes/novo"> Cadastrar filmes</a>
-        <a class="botao-menu" href="#"> Cadastrar cliente </a>
-        <a class="botao-menu" href="/filmes"> Listar filmes</a>
-        <a class="botao-menu" href="#"> Listar cliente</a>
-        <a class="botao-menu" href="#"> Alugar filme</a>
+        <a class="botao-menu" th:href="@{/filmes/novo}"> Cadastrar filmes</a>
+        <a class="botao-menu" th:href="@{/clientes/novo}"> Cadastrar cliente </a>
+        <a class="botao-menu" th:href="@{/filmes}"> Listar filmes</a>
+        <a class="botao-menu" th:href="@{/clientes}"> Listar cliente</a>
+        <a class="botao-menu" th:href="@{/locacoes/novo}"> Alugar filme</a>
+        <a class="botao-menu" th:href="@{/locacoes}"> Listar locações</a>
         <a class="botao-menu" href="#"> Devolver filme</a>
-        <a class="botao-menu" href="#"> Listar locações</a>
-
-
     </section>
 </main>
-<footer class = "rodape">
- <p> Projeto de programação Orientado a Objetos    </p>
 
+<footer class="rodape">
+    <p> Projeto de Programação Orientada a Objetos </p>
 </footer>
 
 </body>
