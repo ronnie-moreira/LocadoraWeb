@@ -1,6 +1,6 @@
 # 🚀 Locadora  SHABARAY 
 
-> Sistema web desenvolvido em Java com Spring Boot para gerenciamento completo [descreva em uma frase o objetivo do sistema, ex: de uma barbearia / de locação de veículos].
+> Sistema web desenvolvido em Java com Spring Boot para gerenciamento completo [alugar filmes].
 
 ---
 
