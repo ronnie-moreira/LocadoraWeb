@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar Locação</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="cabecalho">
+    <p class="professor">Prof. Fernando Sá - Shaba</p>
+    <h1>Locadora Ronnie</h1>
+    <p>Novo Aluguel de Filme</p>
+</header>
+
+<main class="Conteudo">
+    <section class="painel-formulario">
+        <h2>Selecione o Cliente e o Filme</h2>
+
+        <!-- Mensagem de Erro, se houver -->
+        <div th:if="${mensagemErro}" class="mensagem-erro">
+            <p th:text="${mensagemErro}"></p>
+        </div>
+
+        <form th:action="@{/locacoes/salvar}" method="POST">
+
+            <div class="campo">
+                <label for="codigoCliente">Cliente:</label>
+                <select id="codigoCliente" name="codigoCliente" required>
+                    <option value="">Selecione um cliente...</option>
+                    <option th:each="cliente : ${clientes}"
+                            th:value="${cliente.codigo}"
+                            th:text="${cliente.nome} + ' (CPF: ' + ${cliente.cpf} + ')'">
+                    </option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="codigoFilme">Filme:</label>
+                <select id="codigoFilme" name="codigoFilme" required>
+                    <option value="">Selecione um filme...</option>
+                    <option th:each="filme : ${filmes}"
+                            th:value="${filme.codigo}"
+                            th:text="${filme.nome}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="acoes">
+                <button type="submit" class="botao-principal">Efetivar Aluguel</button>
+                <a th:href="@{/}" class="botao-secundario">Cancelar</a>
+            </div>
+        </form>
+    </section>
+</main>
+
+<footer class="rodape">
+    <p>Projeto de Programação Orientada a Objetos</p>
+</footer>
+</body>
+</html>

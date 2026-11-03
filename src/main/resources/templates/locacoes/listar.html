@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LocadoraWeb - Lista de Filmes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="cabecalho">
+    <div class="professor">Sistema de Locação Web</div>
+    <h1>Painel de Controle</h1>
+    <p>Lista de filmes cadastrados no sistema</p>
+</header>
+
+<main class="Conteudo">
+    <div class="painel-listagem">
+
+        <div class="cabecalho-pagina">
+            <h2>Filmes Cadastrados</h2>
+            <a th:href="@{/locacoes/novo}" class="botao-principal">+ Novo Filme</a>
+        </div>
+
+        <div class="tabela-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Título</th>
+                    <th>Gênero</th>
+                    <th>Ano</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="filme : ${filmes}">
+                    <td th:text="${filme.codigo}">1</td>
+                    <td th:text="${filme.nome}">Título do Filme</td>
+                    <td th:text="${filme.genero}">Ação</td>
+                    <td th:text="${filme.ano}">2026</td>
+                    <td>
+                        <!-- Exibe badge diferente dependendo do status -->
+                        <span th:if="${filme.alugado}" class="status-alugado">Alugado</span>
+                        <span th:unless="${filme.alugado}" class="status-disponivel">Disponível</span>
+                    </td>
+                    <td>
+                        <div class="acoes-tabela">
+                            <a th:href="@{/locacoes/editar/{id}(id=${filme.codigo})}" class="btn-acao btn-editar">Editar</a>
+                            <a th:href="@{/locacoes/excluir/{id}(id=${filme.codigo})}" class="btn-acao btn-excluir">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Caso a lista esteja vazia -->
+                <tr th:if="${#lists.isEmpty(filmes)}">
+                    <td colspan="6" class="lista-vazia">Nenhum filme cadastrado até o momento.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</main>
+
+<footer class="rodape">
+    <p>&copy; 2026 LocadoraWeb — Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes Cadastrados</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="cabecalho">
+    <p class="professor">Professor Fernando Sá</p>
+    <h1>Locadora do Ronnie</h1>
+    <p>Clientes cadastrados</p>
+</header>
+
+<main class="Conteudo">
+    <section class="painel-listagem">
+        <div class="cabecalho-pagina">
+            <h2>Lista de Clientes</h2>
+            <a class="botao-principal" th:href="@{/clientes/novo}">Cadastrar novo cliente</a>
+        </div>
+
+        <!-- Mensagem caso a lista esteja vazia -->
+        <p class="lista-vazia" th:if="${clientes.isEmpty()}">
+            Nenhum cliente cadastrado
+        </p>
+
+        <!-- Tabela exibida apenas quando houver clientes -->
+        <div class="tabela-container" th:unless="${clientes.isEmpty()}">
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.codigo}">1</td>
+                    <td th:text="${cliente.nome}">Nome do Cliente</td>
+                    <td th:text="${cliente.cpf}">000.000.000-00</td>
+                    <td th:text="${cliente.telefone}">(00) 00000-0000</td>
+
+                    <!-- Botões de Ação (Editar e Excluir) -->
+                    <td class="acoes-tabela">
+                        <a th:href="@{/clientes/editar/{codigo}(codigo=${cliente.codigo})}" class="btn-acao btn-editar">Editar</a>
+                        <a th:href="@{/clientes/excluir/{codigo}(codigo=${cliente.codigo})}" class="btn-acao btn-excluir" onclick="return confirm('Deseja realmente excluir este cliente?');">Excluir</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="acoes" style="margin-top: 24px;">
+            <a class="botao-secundario" th:href="@{/}">Voltar ao Menu</a>
+        </div>
+    </section>
+</main>
+
+<footer class="rodape">
+    <p>Projeto de Programação Orientada a Objetos I</p>
+</footer>
+</body>
+</html>

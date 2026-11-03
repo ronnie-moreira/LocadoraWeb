@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Cliente - Locadora</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Cabeçalho do Sistema -->
+<header class="cabecalho">
+    <p class="professor">Professor Fernando Sá</p>
+    <h1>Locadora do Ronnie</h1>
+    <p>Painel Administrativo de Clientes</p>
+</header>
+
+<!-- Conteúdo Principal -->
+<main class="Conteudo">
+    <section class="painel-formulario">
+        <!-- Título dinâmico (muda se for novo cadastro ou edição) -->
+        <h2 th:text="${cliente.codigo == 0 ? 'Cadastrar Novo Cliente' : 'Editar Cliente'}">Cadastrar Cliente</h2>
+
+        <!-- Alerta de Sucesso -->
+        <div class="mensagem-sucesso" th:if="${param.sucesso}">
+            Cliente salvo com sucesso!
+        </div>
+
+        <!-- Alerta de Erro -->
+        <div class="mensagem-erro" th:if="${mensagemErro}" th:text="${mensagemErro}">
+            Ocorreu um erro ao salvar o cliente.
+        </div>
+
+        <!-- Formulário de Cadastro / Edição -->
+        <form th:action="@{/clientes/salvar}" th:object="${cliente}" method="POST">
+
+            <!-- Campo oculto para manter o código durante a edição -->
+            <input type="hidden" th:field="*{codigo}" />
+
+            <!-- Campo Nome -->
+            <div class="campo">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" th:field="*{nome}" placeholder="Digite o nome do cliente" required />
+            </div>
+
+            <!-- Campo CPF -->
+            <div class="campo">
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" th:field="*{cpf}" placeholder="000.000.000-00" required />
+            </div>
+
+            <!-- Campo Telefone -->
+            <div class="campo">
+                <label for="telefone">Telefone / WhatsApp</label>
+                <input type="text" id="telefone" th:field="*{telefone}" placeholder="(00) 00000-0000" required />
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="acoes">
+                <button type="submit" class="botao-principal">Salvar Cliente</button>
+                <a th:href="@{/clientes}" class="botao-secundario">Voltar</a>
+            </div>
+        </form>
+    </section>
+</main>
+
+<!-- Rodapé -->
+<footer class="rodape">
+    <p>Projeto de Programação Orientada a Objetos I</p>
+</footer>
+
+</body>
+</html>
